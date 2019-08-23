@@ -3,9 +3,9 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const PORT = 3001;
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hellow World</h1>");
-});
+// app.get("/", (req, res) => {
+//   res.send("<h1>Hellow World</h1>");
+// });
 
 http.listen(PORT, () => {
   console.log(`listening on Port ${PORT}`);

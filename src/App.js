@@ -1,8 +1,14 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import NavBar from "./components/nav";
+import Lobby from "./components/Lobby";
+import About from "./components/About";
 
-import io from "socket.io-client";
+import Home from "./components/Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// import io from "socket.io-client";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -18,18 +24,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-let socket;
+// let socket;
 function App() {
   const classes = useStyles();
-  if (!socket) {
-    console.log("initializing socket.io from client");
-    socket = io(`:${serverPORT}`);
-  }
+  // if (!socket) {
+  //   console.log("initializing socket.io from client");
+  //   socket = io(`:${serverPORT}`);NavBar />
+  // <Button variant="contained" className={classes.button}>
+  //   Hello gaafasfd
+  // </Button>;
+  // }
 
   return (
-    <Button variant="contained" className={classes.button}>
-      Default
-    </Button>
+    <Router>
+      <NavBar />
+      {/* <Button variant="contained" claNavBar />
+        Hello gaafasfd
+      </Button> */}
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/about" exact component={About} />
+        <Route path="/lobby" exact component={Lobby} />
+      </Switch>
+    </Router>
   );
 
   // return (
