@@ -2,7 +2,7 @@ const app = require("express")();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const PORT = 3001;
-
+const soccerGame = require("./soccer/soccerServer");
 // app.get("/", (req, res) => {
 //   res.send("<h1>Hellow World</h1>");
 // });
@@ -18,6 +18,7 @@ const defaultPlayerDataTest = {
 };
 
 const onlinePlayers = {};
+const gameData = { soccer: {} };
 
 io.on("connection", socket => {
   ///////////////////////////
@@ -29,4 +30,5 @@ io.on("connection", socket => {
     delete onlinePlayers[socket.id];
     console.log(onlinePlayers);
   });
+  soccerGame(socket, io.sockets, io.sockets.adapter.rooms, gameData.soccer);
 });
